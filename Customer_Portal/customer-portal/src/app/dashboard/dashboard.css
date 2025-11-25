@@ -1,0 +1,74 @@
+.dashboard-container {
+  padding: 10px;
+}
+
+.dashboard-container h2 {
+  font-size: 28px;
+  color: #0d47a1;
+  margin-bottom: 20px;
+  font-weight: 700;
+}
+
+.cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 20px;
+}
+
+.card {
+  background: white;
+  padding: 25px;
+  border-radius: 14px;
+  text-align: center;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  cursor: pointer;
+  transition: 0.25s;
+  border-top: 4px solid #1976d2;
+}
+
+.card:hover {
+  transform: scale(1.04);
+  background: #e3f2fd;
+}
+
+.card h3 {
+  font-size: 22px;
+  margin-bottom: 10px;
+  color: #0d47a1;
+}
+
+.card p {
+  font-size: 15px;
+  color: #333;
+}
+
+.dashboard-container {
+  padding: 20px;
+}
+
+.cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
+}
+
+.card {
+  display: block;
+  padding: 20px;
+  border-radius: 10px;
+  background: #ffffff;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  text-decoration: none;
+  color: #333;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+}
+
+.card h3 {
+  margin: 0 0 10px 0;
+}

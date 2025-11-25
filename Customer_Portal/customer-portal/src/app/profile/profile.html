@@ -1,0 +1,36 @@
+<div class="profile-container" *ngIf="!loading && profile; else loadingOrError">
+
+  <!-- Header with Name & Customer ID -->
+  <div class="profile-header">
+    <h1>{{ profile.NAME }}</h1>
+    <p>Customer ID: {{ profile.CUSTOMER_ID }}</p>
+  </div>
+
+  <!-- Profile Details -->
+  <div class="profile-details">
+    <div class="profile-card">
+      <label>Street</label>
+      <p>{{ profile.STREET || 'N/A' }}</p>
+    </div>
+    <div class="profile-card">
+      <label>City</label>
+      <p>{{ profile.CITY || 'N/A' }}</p>
+    </div>
+    <div class="profile-card">
+      <label>Postal Code</label>
+      <p>{{ profile.POSTAL_CODE || 'N/A' }}</p>
+    </div>
+    <div class="profile-card">
+      <label>Country</label>
+      <p>{{ profile.COUNTRY || 'N/A' }}</p>
+    </div>
+  </div>
+
+</div>
+
+<ng-template #loadingOrError>
+  <div class="loading-wrapper">
+    <p *ngIf="loading">Loading profile...</p>
+    <p *ngIf="error">{{ error }}</p>
+  </div>
+</ng-template>

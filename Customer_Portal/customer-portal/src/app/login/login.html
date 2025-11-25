@@ -1,0 +1,21 @@
+<div class="login-wrapper">
+  <div class="login-container">
+
+    <div class="logo-container">
+      <img src="assets/logo.png" class="logo" alt="Kaar Tech Logo">
+    </div>
+
+  
+  <div>
+    <h2 class="title">Customer Login</h2>
+
+    <form [formGroup]="loginForm" (ngSubmit)="onLogin()">
+      <input type="text" formControlName="customer_id" placeholder="Customer ID" class="input-field"/>
+      <input type="password" formControlName="password" placeholder="Password" class="input-field"/>
+      <button type="submit" class="login-button">Login</button>
+    </form>
+
+    <p class="error" *ngIf="errorMessage">{{ errorMessage }}</p>
+  </div>
+</div>
+</div>

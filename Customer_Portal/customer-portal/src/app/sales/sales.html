@@ -1,0 +1,65 @@
+<h2>SALES</h2>
+<div class="sales-container">
+  <div *ngIf="loading">Loading sales data...</div>
+  <div *ngIf="error">{{ error }}</div>
+
+  <div *ngIf="!loading && !error">
+    <table class="sales-table">
+      <thead>
+        <!-- Filter Row: separate from header labels -->
+        <tr class="filter-row">
+         <th><input [(ngModel)]="filters['VBELN']" (input)="applyFilters()" placeholder="Filter Order No" /></th>
+         <th><input [(ngModel)]="filters['ERDAT']" (input)="applyFilters()" placeholder="Filter Date" /></th>
+         <th><input [(ngModel)]="filters['MATNR']" (input)="applyFilters()" placeholder="Filter Material" /></th>
+         <th><input [(ngModel)]="filters['ARKTX']" (input)="applyFilters()" placeholder="Filter Description" /></th>
+         <th><input [(ngModel)]="filters['KWMENG']" (input)="applyFilters()" placeholder="Filter Quantity" /></th>
+         <th><input [(ngModel)]="filters['MEINS']" (input)="applyFilters()" placeholder="Filter Unit" /></th>
+         <th><input [(ngModel)]="filters['WAERK']" (input)="applyFilters()" placeholder="Filter Currency" /></th>
+         <th><input [(ngModel)]="filters['NETWR']" (input)="applyFilters()" placeholder="Filter Net Value" /></th>
+        </tr>
+
+
+        <!-- Column Headers Row -->
+        <tr class="header-row">
+          <th (click)="sortData('VBELN')">Order No 
+            <span *ngIf="sortColumn === 'VBELN'">{{ sortDirection === 'asc' ? '▲' : '▼' }}</span>
+          </th>
+          <th (click)="sortData('ERDAT')">Date 
+            <span *ngIf="sortColumn === 'ERDAT'">{{ sortDirection === 'asc' ? '▲' : '▼' }}</span>
+          </th>
+          <th (click)="sortData('MATNR')">Material 
+            <span *ngIf="sortColumn === 'MATNR'">{{ sortDirection === 'asc' ? '▲' : '▼' }}</span>
+          </th>
+          <th (click)="sortData('ARKTX')">Description 
+            <span *ngIf="sortColumn === 'ARKTX'">{{ sortDirection === 'asc' ? '▲' : '▼' }}</span>
+          </th>
+          <th (click)="sortData('KWMENG')">Quantity 
+            <span *ngIf="sortColumn === 'KWMENG'">{{ sortDirection === 'asc' ? '▲' : '▼' }}</span>
+          </th>
+          <th (click)="sortData('MEINS')">Unit 
+            <span *ngIf="sortColumn === 'MEINS'">{{ sortDirection === 'asc' ? '▲' : '▼' }}</span>
+          </th>
+          <th (click)="sortData('WAERK')">Currency 
+            <span *ngIf="sortColumn === 'WAERK'">{{ sortDirection === 'asc' ? '▲' : '▼' }}</span>
+          </th>
+          <th (click)="sortData('NETWR')">Net Value 
+            <span *ngIf="sortColumn === 'NETWR'">{{ sortDirection === 'asc' ? '▲' : '▼' }}</span>
+          </th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr *ngFor="let item of filteredSales">
+          <td>{{ item.VBELN }}</td>
+          <td>{{ item.ERDAT }}</td>
+          <td>{{ item.MATNR }}</td>
+          <td>{{ item.ARKTX }}</td>
+          <td>{{ item.KWMENG }}</td>
+          <td>{{ item.MEINS }}</td>
+          <td>{{ item.WAERK }}</td>
+          <td>{{ item.NETWR }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

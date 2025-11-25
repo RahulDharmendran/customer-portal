@@ -1,0 +1,38 @@
+<div class="credit-debit-container">
+  <h2>Credit / Debit Memos</h2>
+  <p>Customer ID: {{ customerId }}</p>
+
+  <div *ngIf="loading">Loading memos...</div>
+  <div *ngIf="error" class="error">{{ error }}</div>
+
+  <table *ngIf="filteredMemos.length > 0" class="credit-debit-table">
+    <thead>
+      <!-- Filter Row -->
+      <tr>
+        <th><input class="filter-input" [(ngModel)]="filterVBELN" (input)="applyFilters()" placeholder="Filter Doc"/></th>
+        <th><input class="filter-input" [(ngModel)]="filterFKDAT" (input)="applyFilters()" placeholder="Filter Date"/></th>
+        <th><input class="filter-input" [(ngModel)]="filterNETWR" (input)="applyFilters()" placeholder="Filter Amount"/></th>
+        <th><input class="filter-input" [(ngModel)]="filterWAERK" (input)="applyFilters()" placeholder="Filter Currency"/></th>
+        <th><input class="filter-input" [(ngModel)]="filterMEMO_TYPE" (input)="applyFilters()" placeholder="Filter Type"/></th>
+      </tr>
+
+      <!-- Header Row -->
+      <tr>
+        <th (click)="sortData('VBELN')">Document <span *ngIf="sortColumn==='VBELN'">{{sortDirection==='asc'?'▲':'▼'}}</span></th>
+        <th (click)="sortData('FKDAT')">Date <span *ngIf="sortColumn==='FKDAT'">{{sortDirection==='asc'?'▲':'▼'}}</span></th>
+        <th (click)="sortData('NETWR')">Amount <span *ngIf="sortColumn==='NETWR'">{{sortDirection==='asc'?'▲':'▼'}}</span></th>
+        <th (click)="sortData('WAERK')">Currency <span *ngIf="sortColumn==='WAERK'">{{sortDirection==='asc'?'▲':'▼'}}</span></th>
+        <th (click)="sortData('MEMO_TYPE')">Type <span *ngIf="sortColumn==='MEMO_TYPE'">{{sortDirection==='asc'?'▲':'▼'}}</span></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of filteredMemos">
+        <td>{{ item.VBELN }}</td>
+        <td>{{ item.FKDAT }}</td>
+        <td>{{ item.NETWR }}</td>
+        <td>{{ item.WAERK }}</td>
+        <td>{{ item.MEMO_TYPE }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

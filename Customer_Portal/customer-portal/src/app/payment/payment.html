@@ -1,0 +1,63 @@
+<div class="payment-container">
+  <h2>Payment Aging</h2>
+
+  <p>Customer ID: {{ customerId }}</p>
+
+  <div *ngIf="loading">Loading payments...</div>
+  <div *ngIf="error" class="error">{{ error }}</div>
+
+  <div *ngIf="!loading && !error && payments.length > 0">
+    <table class="payment-table">
+      <thead>
+        <!-- Filter row -->
+        <tr>
+          <th><input type="text" [(ngModel)]="filters.document" (input)="applyFilters()" placeholder="Filter Document" /></th>
+          <th><input type="text" [(ngModel)]="filters.invoiceDate" (input)="applyFilters()" placeholder="Filter Invoice Date" /></th>
+          <th><input type="text" [(ngModel)]="filters.amount" (input)="applyFilters()" placeholder="Filter Amount" /></th>
+          <th><input type="text" [(ngModel)]="filters.currency" (input)="applyFilters()" placeholder="Filter Currency" /></th>
+          <th><input type="text" [(ngModel)]="filters.dueDate" (input)="applyFilters()" placeholder="Filter Due Date" /></th>
+          <th><input type="text" [(ngModel)]="filters.aging" (input)="applyFilters()" placeholder="Filter Aging" /></th>
+        </tr>
+
+        <!-- Column headers with sorting -->
+        <tr>
+          <th (click)="sortData('VBELN')">
+            Document
+            <span *ngIf="sortColumn==='VBELN'">{{sortDirection==='asc'?'▲':'▼'}}</span>
+          </th>
+          <th (click)="sortData('FKDAT')">
+            Invoice Date
+            <span *ngIf="sortColumn==='FKDAT'">{{sortDirection==='asc'?'▲':'▼'}}</span>
+          </th>
+          <th (click)="sortData('NETWR')">
+            Amount
+            <span *ngIf="sortColumn==='NETWR'">{{sortDirection==='asc'?'▲':'▼'}}</span>
+          </th>
+          <th (click)="sortData('WAERK')">
+            Currency
+            <span *ngIf="sortColumn==='WAERK'">{{sortDirection==='asc'?'▲':'▼'}}</span>
+          </th>
+          <th (click)="sortData('DATS')">
+            Due Date
+            <span *ngIf="sortColumn==='DATS'">{{sortDirection==='asc'?'▲':'▼'}}</span>
+          </th>
+          <th (click)="sortData('AGING')">
+            Aging
+            <span *ngIf="sortColumn==='AGING'">{{sortDirection==='asc'?'▲':'▼'}}</span>
+          </th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr *ngFor="let item of filteredPayments">
+          <td>{{ item.VBELN }}</td>
+          <td>{{ item.FKDAT }}</td>
+          <td>{{ item.NETWR }}</td>
+          <td>{{ item.WAERK }}</td>
+          <td>{{ item.DATS }}</td>
+          <td>{{ item.AGING }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

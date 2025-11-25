@@ -1,0 +1,68 @@
+<div class="invoice-container">
+  <h2>Invoice List</h2>
+
+  <div *ngIf="loading" class="loading-wrapper">Loading invoices...</div>
+  <div *ngIf="error" class="error">{{ error }}</div>
+
+  <div class="invoice-card" *ngIf="!loading && filteredInvoices.length > 0">
+    <table class="invoice-table">
+      <thead>
+        <!-- Filter Row -->
+        <tr>
+          <th>
+            <input type="text" placeholder="Filter Invoice"
+                   [(ngModel)]="filters.VBELN" (input)="filterTable()">
+          </th>
+
+          <th>
+            <input type="text" placeholder="Filter Date"
+                   [(ngModel)]="filters.FKDAT" (input)="filterTable()">
+          </th>
+
+          <th>
+            <input type="text" placeholder="Filter Currency"
+                   [(ngModel)]="filters.WAERK" (input)="filterTable()">
+          </th>
+
+          <th>
+            <input type="text" placeholder="Filter Amount"
+                   [(ngModel)]="filters.NETWR" (input)="filterTable()">
+          </th>
+
+          <th></th>
+        </tr>
+
+        <!-- Table Header Row (sortable) -->
+        <tr>
+          <th (click)="sortData('VBELN')">
+            Invoice No {{ getSortIcon('VBELN') }}
+          </th>
+          <th (click)="sortData('FKDAT')">
+            Invoice Date {{ getSortIcon('FKDAT') }}
+          </th>
+          <th (click)="sortData('WAERK')">
+            Currency {{ getSortIcon('WAERK') }}
+          </th>
+          <th (click)="sortData('NETWR')">
+            Amount {{ getSortIcon('NETWR') }}
+          </th>
+          <th>Download</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr *ngFor="let item of filteredInvoices">
+          <td>{{ item.VBELN }}</td>
+          <td>{{ item.FKDAT }}</td>
+          <td>{{ item.WAERK }}</td>
+          <td>{{ item.NETWR }}</td>
+          <td><button (click)="downloadPDF(item.VBELN)">Download PDF</button></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div *ngIf="!loading && filteredInvoices.length === 0" class="loading-wrapper">
+    No invoices available.
+  </div>
+</div>

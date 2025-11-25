@@ -1,0 +1,50 @@
+.sales-container {
+  padding: 20px;
+  font-family: Arial, sans-serif;
+}
+
+.filter-input {
+  margin-bottom: 15px;
+  padding: 8px 12px;
+  width: 300px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.sales-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+}
+
+.sales-table th,
+.sales-table td {
+  padding: 10px 12px;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.sales-table th {
+  background-color: #f5f5f5;
+  cursor: pointer;
+  position: relative;
+  user-select: none;
+}
+
+.sales-table th span {
+  margin-left: 5px;
+  font-size: 12px;
+}
+
+.sales-table tr:hover {
+  background-color: #f1f8ff;
+}
+
+.sales-table td {
+  vertical-align: middle;
+}
+
+/* Optional: Add subtle shadow for table */
+.sales-table {
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+}

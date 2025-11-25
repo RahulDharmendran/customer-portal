@@ -1,0 +1,48 @@
+<h2>INQUIRY</h2>
+<div class="inquiry-container">
+  <div *ngIf="loading">Loading inquiries...</div>
+  <div *ngIf="error">{{ error }}</div>
+
+  <div *ngIf="!loading && !error">
+    <table class="inquiry-table">
+      <thead>
+        <tr>
+          <!-- Filters Row -->
+          <th><input type="text" placeholder="Filter" [(ngModel)]="filters.VBELN" (input)="applyFilters()" /></th>
+          <th><input type="text" placeholder="Filter" [(ngModel)]="filters.ERDAT" (input)="applyFilters()" /></th>
+          <th><input type="text" placeholder="Filter" [(ngModel)]="filters.MATNR" (input)="applyFilters()" /></th>
+          <th><input type="text" placeholder="Filter" [(ngModel)]="filters.ARKTX" (input)="applyFilters()" /></th>
+          <th><input type="text" placeholder="Filter" [(ngModel)]="filters.KWMENG" (input)="applyFilters()" /></th>
+          <th><input type="text" placeholder="Filter" [(ngModel)]="filters.MEINS" (input)="applyFilters()" /></th>
+          <th><input type="text" placeholder="Filter" [(ngModel)]="filters.WAERK" (input)="applyFilters()" /></th>
+          <th><input type="text" placeholder="Filter" [(ngModel)]="filters.NETWR" (input)="applyFilters()" /></th>
+        </tr>
+
+        <!-- Column Headers Row -->
+        <tr>
+          <th (click)="sortData('VBELN')">Order No <span *ngIf="sortColumn === 'VBELN'">{{ sortDirection === 'asc' ? '▲' : '▼' }}</span></th>
+          <th (click)="sortData('ERDAT')">Date <span *ngIf="sortColumn === 'ERDAT'">{{ sortDirection === 'asc' ? '▲' : '▼' }}</span></th>
+          <th (click)="sortData('MATNR')">Material <span *ngIf="sortColumn === 'MATNR'">{{ sortDirection === 'asc' ? '▲' : '▼' }}</span></th>
+          <th (click)="sortData('ARKTX')">Description <span *ngIf="sortColumn === 'ARKTX'">{{ sortDirection === 'asc' ? '▲' : '▼' }}</span></th>
+          <th (click)="sortData('KWMENG')">Quantity <span *ngIf="sortColumn === 'KWMENG'">{{ sortDirection === 'asc' ? '▲' : '▼' }}</span></th>
+          <th (click)="sortData('MEINS')">Unit <span *ngIf="sortColumn === 'MEINS'">{{ sortDirection === 'asc' ? '▲' : '▼' }}</span></th>
+          <th (click)="sortData('WAERK')">Currency <span *ngIf="sortColumn === 'WAERK'">{{ sortDirection === 'asc' ? '▲' : '▼' }}</span></th>
+          <th (click)="sortData('NETWR')">Net Value <span *ngIf="sortColumn === 'NETWR'">{{ sortDirection === 'asc' ? '▲' : '▼' }}</span></th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr *ngFor="let item of filteredInquiries">
+          <td>{{ item.VBELN }}</td>
+          <td>{{ item.ERDAT }}</td>
+          <td>{{ item.MATNR }}</td>
+          <td>{{ item.ARKTX }}</td>
+          <td>{{ item.KWMENG }}</td>
+          <td>{{ item.MEINS }}</td>
+          <td>{{ item.WAERK }}</td>
+          <td>{{ item.NETWR }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

@@ -1,0 +1,32 @@
+<div class="profile-container" *ngIf="!loading && salesSummary; else loadingOrError">
+
+  <!-- Header with Customer ID -->
+  <div class="profile-header">
+    <h1>Overall Sales</h1>
+    <p>Customer ID: {{ customerId }}</p>
+  </div>
+
+  <!-- Sales Summary Cards -->
+  <div class="profile-details">
+    <div class="profile-card">
+      <label>Total Count</label>
+      <p>{{ salesSummary.TOTAL_COUNT || 0 }}</p>
+    </div>
+    <div class="profile-card">
+      <label>Total Amount</label>
+      <p>{{ salesSummary.TOTAL_AMOUNT || 0.0 }}</p>
+    </div>
+    <div class="profile-card">
+      <label>Currency</label>
+      <p>{{ salesSummary.CURRENCY || 'N/A' }}</p>
+    </div>
+  </div>
+
+</div>
+
+<ng-template #loadingOrError>
+  <div class="loading-wrapper">
+    <p *ngIf="loading">Loading overall sales...</p>
+    <p *ngIf="error">{{ error }}</p>
+  </div>
+</ng-template>

@@ -1,0 +1,50 @@
+<div class="layout">
+
+  <!-- Top Navigation Bar -->
+  <header class="topbar">
+    <div class="logo-area">
+      <h2>Customer Portal</h2>
+    </div>
+  </header>
+
+  <div class="main-area">
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <div class="nav-buttons">
+
+        <button routerLink="/home" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+          🏠 Home
+        </button>
+        
+        <button routerLink="/home/profile" routerLinkActive="active">
+          👤 Profile
+        </button>
+
+        <button routerLink="/home/dashboard" routerLinkActive="active">
+          📊 Dashboard
+        </button>
+
+        <button routerLink="/home/financial-sheet" routerLinkActive="active">
+          💰 Financial Sheet
+        </button>
+
+      </div>
+
+      <!-- Logout button -->
+      <button class="logout-button" (click)="logout()">Logout</button>
+    </aside>
+
+    <!-- Content area -->
+    <main class="content">
+      <!-- Default welcome message only on '/home' -->
+      <div *ngIf="router.url === '/home'" class="welcome-section">
+        <h1>Welcome to Customer Portal</h1>
+      </div>
+
+      <!-- Routed Component Pages -->
+      <router-outlet *ngIf="router.url !== '/home'"></router-outlet>
+    </main>
+
+  </div>
+</div>
